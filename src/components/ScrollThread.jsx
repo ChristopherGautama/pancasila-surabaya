@@ -1,4 +1,4 @@
-import { usePageScroll } from './SmoothScroll'
+import { usePageScroll } from './scroll-context'
 
 /**
  * A thin vertical gold "thread" pinned to the left edge of the viewport whose

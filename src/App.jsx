@@ -2,6 +2,7 @@ import SmoothScroll from './components/SmoothScroll'
 import ScrollThread from './components/ScrollThread'
 import Navbar from './components/Navbar'
 import SectionDivider from './components/SectionDivider'
+import BackToTop from './components/BackToTop'
 import Hero from './sections/Hero'
 import Pendahuluan from './sections/Pendahuluan'
 import Metode from './sections/Metode'
@@ -10,7 +11,9 @@ import Sila from './sections/Sila'
 import Data from './sections/Data'
 import Perbandingan from './sections/Perbandingan'
 import Temuan from './sections/Temuan'
-import { IMG } from './data/assets'
+import Solusi from './sections/Solusi'
+import Kesimpulan from './sections/Kesimpulan'
+import Tim from './sections/Tim'
 
 export default function App() {
   return (
@@ -53,30 +56,23 @@ export default function App() {
 
         <Temuan />
 
-        {/* Wave: krem Temuan → dark "bersambung" teaser */}
-        <SectionDivider color="#14080A" className="bg-krem" />
+        {/* Wave: krem Temuan → bright Solusi (subtle gold accent) */}
+        <SectionDivider color="#FBF7F0" className="bg-krem" />
 
-        {/* Phase 1 teaser — replaced by the full narrative in later phases.
-            Gives the scroll thread + progress bar real scroll distance. */}
-        <section
-          id="bersambung"
-          className="section-shell relative flex min-h-[70svh] items-center justify-center bg-gelap"
-        >
-          <div
-            className="batik-overlay"
-            style={{ backgroundImage: `url(${IMG.batikOrnament})` }}
-          />
-          <div className="relative z-10 mx-auto max-w-2xl px-6 text-center">
-            <p className="pull-quote text-2xl text-emas-terang sm:text-3xl">
-              &ldquo;Pancasila bukan sekadar dasar negara, melainkan denyut yang
-              hidup di nadi kota.&rdquo;
-            </p>
-            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.3em] text-krem/50">
-              Bersambung &middot; Narasi lima kawasan segera hadir
-            </p>
-          </div>
-        </section>
+        <Solusi />
+
+        {/* Wave: bright Solusi → red Kesimpulan */}
+        <SectionDivider color="#CE1126" className="bg-krem" />
+
+        <Kesimpulan />
+
+        {/* Wave: red Kesimpulan → dark Tim footer */}
+        <SectionDivider color="#14080A" className="bg-merah-tua" />
+
+        <Tim />
       </main>
+
+      <BackToTop />
     </SmoothScroll>
   )
 }

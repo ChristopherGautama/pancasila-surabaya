@@ -1,20 +1,6 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-} from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import Lenis from 'lenis'
-
-const ScrollContext = createContext({
-  progress: 0,
-  scrollTo: () => {},
-  lenis: null,
-})
-
-export const usePageScroll = () => useContext(ScrollContext)
+import { ScrollContext } from './scroll-context'
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
@@ -90,9 +76,7 @@ export default function SmoothScroll({ children }) {
   }, [])
 
   return (
-    <ScrollContext.Provider
-      value={{ progress, scrollTo, lenis: lenisRef.current }}
-    >
+    <ScrollContext.Provider value={{ progress, scrollTo }}>
       {children}
     </ScrollContext.Provider>
   )

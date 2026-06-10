@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { IMG, GARUDA } from '../data/assets'
-import { usePageScroll } from '../components/SmoothScroll'
+import { usePageScroll } from '../components/scroll-context'
 import GoldParticles from '../components/GoldParticles'
 
 const TITLE_WORDS = ['Pancasila', 'di', 'Nadi', 'Surabaya']

@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { usePageScroll } from './SmoothScroll'
+import { usePageScroll } from './scroll-context'
 import { SECTIONS } from '../data/sections'
 import { GARUDA } from '../data/assets'
 
@@ -131,16 +131,16 @@ export default function Navbar() {
             </span>
           </button>
 
-          {/* Desktop menu */}
+          {/* Desktop menu (full bar from xl; below that the hamburger handles all) */}
           {SECTIONS.length > 1 && (
-            <ul className="hidden items-center gap-1 md:flex">
+            <ul className="hidden items-center gap-0.5 xl:flex">
               {SECTIONS.map((s) => {
                 const active = activeId === s.id
                 return (
                   <li key={s.id}>
                     <button
                       onClick={() => goTo(s.id)}
-                      className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      className={`relative rounded-full px-3 py-2 text-[13px] font-medium transition-colors ${
                         active
                           ? 'text-gelap'
                           : 'text-putih/80 hover:text-emas-terang'
@@ -165,7 +165,7 @@ export default function Navbar() {
           {SECTIONS.length > 1 && (
             <button
               onClick={() => setMenuOpen((o) => !o)}
-              className="rounded-full p-2 text-emas-terang md:hidden"
+              className="rounded-full p-2 text-emas-terang xl:hidden"
               aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
               aria-expanded={menuOpen}
             >
@@ -180,7 +180,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="glass-dark mx-4 mt-2 overflow-hidden rounded-2xl border border-emas/15 md:hidden"
+            className="glass-dark mx-4 mt-2 max-h-[70vh] overflow-y-auto rounded-2xl border border-emas/15 xl:hidden"
           >
             {SECTIONS.map((s) => (
               <li key={s.id}>
