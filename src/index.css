@@ -94,6 +94,15 @@
     border: 1px solid rgba(233, 196, 106, 0.16);
   }
 
+  /* Frosted glass card tuned for light / krem backgrounds */
+  .glass-light {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(212, 160, 23, 0.28);
+    box-shadow: 0 10px 30px rgba(122, 12, 24, 0.08);
+  }
+
   /* Gold gradient text */
   .text-gold-gradient {
     background: linear-gradient(90deg, #d4a017 0%, #e9c46a 45%, #f3dca0 60%, #d4a017 100%);

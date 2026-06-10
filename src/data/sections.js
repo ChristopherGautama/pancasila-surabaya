@@ -3,8 +3,9 @@
 // scroll order of the page. As later phases add sections, extend this list.
 export const SECTIONS = [
   { id: 'hero', label: 'Beranda' },
+  { id: 'pendahuluan', label: 'Pendahuluan' },
+  { id: 'metode', label: 'Metode' },
   // Phase 2+ sections will be appended here, e.g.:
-  // { id: 'pengantar', label: 'Pengantar' },
   // { id: 'sila', label: 'Lima Sila' },
   // { id: 'peta', label: 'Lima Kawasan' },
   // { id: 'data', label: 'Data' },

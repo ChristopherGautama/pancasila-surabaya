@@ -3,6 +3,8 @@ import ScrollThread from './components/ScrollThread'
 import Navbar from './components/Navbar'
 import SectionDivider from './components/SectionDivider'
 import Hero from './sections/Hero'
+import Pendahuluan from './sections/Pendahuluan'
+import Metode from './sections/Metode'
 import { IMG } from './data/assets'
 
 export default function App() {
@@ -14,8 +16,19 @@ export default function App() {
       <main>
         <Hero />
 
-        {/* Wave transition into the (upcoming) narrative sections */}
-        <SectionDivider color="#14080A" className="-mt-1" />
+        {/* Wave: dark hero → krem Pendahuluan (wave fill = section below) */}
+        <SectionDivider color="#FBF7F0" className="-mt-1" />
+
+        <Pendahuluan />
+
+        {/* Wave between two krem sections — krem container + krem fill leaves
+            just the decorative gold accent line as a subtle separator */}
+        <SectionDivider color="#FBF7F0" className="bg-krem" />
+
+        <Metode />
+
+        {/* Wave: krem Metode → dark "bersambung" teaser */}
+        <SectionDivider color="#14080A" className="bg-krem" />
 
         {/* Phase 1 teaser — replaced by the full narrative in later phases.
             Gives the scroll thread + progress bar real scroll distance. */}
