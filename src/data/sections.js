@@ -5,9 +5,9 @@ export const SECTIONS = [
   { id: 'hero', label: 'Beranda' },
   { id: 'pendahuluan', label: 'Pendahuluan' },
   { id: 'metode', label: 'Metode' },
+  { id: 'peta', label: 'Lima Kawasan' },
   // Phase 2+ sections will be appended here, e.g.:
   // { id: 'sila', label: 'Lima Sila' },
-  // { id: 'peta', label: 'Lima Kawasan' },
   // { id: 'data', label: 'Data' },
   // { id: 'solusi', label: 'Solusi' },
   // { id: 'kesimpulan', label: 'Kesimpulan' },

@@ -5,6 +5,7 @@ import SectionDivider from './components/SectionDivider'
 import Hero from './sections/Hero'
 import Pendahuluan from './sections/Pendahuluan'
 import Metode from './sections/Metode'
+import Peta from './sections/Peta'
 import { IMG } from './data/assets'
 
 export default function App() {
@@ -27,8 +28,13 @@ export default function App() {
 
         <Metode />
 
-        {/* Wave: krem Metode → dark "bersambung" teaser */}
-        <SectionDivider color="#14080A" className="bg-krem" />
+        {/* Wave: krem Metode → white Peta (wave fill = section below) */}
+        <SectionDivider color="#FFFFFF" className="bg-krem" />
+
+        <Peta />
+
+        {/* Wave: white Peta → dark "bersambung" teaser */}
+        <SectionDivider color="#14080A" className="bg-putih" />
 
         {/* Phase 1 teaser — replaced by the full narrative in later phases.
             Gives the scroll thread + progress bar real scroll distance. */}
