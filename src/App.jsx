@@ -6,6 +6,7 @@ import Hero from './sections/Hero'
 import Pendahuluan from './sections/Pendahuluan'
 import Metode from './sections/Metode'
 import Peta from './sections/Peta'
+import Sila from './sections/Sila'
 import { IMG } from './data/assets'
 
 export default function App() {
@@ -33,8 +34,9 @@ export default function App() {
 
         <Peta />
 
-        {/* Wave: white Peta → dark "bersambung" teaser */}
-        <SectionDivider color="#14080A" className="bg-putih" />
+        {/* Lima Sila — owns its own leading (white→dark) & trailing (dark→dark)
+            SectionDividers, so none is needed here. */}
+        <Sila />
 
         {/* Phase 1 teaser — replaced by the full narrative in later phases.
             Gives the scroll thread + progress bar real scroll distance. */}
