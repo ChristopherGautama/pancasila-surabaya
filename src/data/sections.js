@@ -1,0 +1,13 @@
+// Single source of truth for the page sections. Drives the navbar menu,
+// active-section highlighting and keyboard navigation. The order here is the
+// scroll order of the page. As later phases add sections, extend this list.
+export const SECTIONS = [
+  { id: 'hero', label: 'Beranda' },
+  // Phase 2+ sections will be appended here, e.g.:
+  // { id: 'pengantar', label: 'Pengantar' },
+  // { id: 'sila', label: 'Lima Sila' },
+  // { id: 'peta', label: 'Lima Kawasan' },
+  // { id: 'data', label: 'Data' },
+  // { id: 'solusi', label: 'Solusi' },
+  // { id: 'kesimpulan', label: 'Kesimpulan' },
+]

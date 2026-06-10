@@ -1,0 +1,166 @@
+/* ===== Google Fonts: Plus Jakarta Sans + Fraunces ===== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Design tokens as CSS variables ===== */
+:root {
+  --merah: #ce1126;
+  --merah-tua: #7a0c18;
+  --gelap: #14080a;
+  --emas: #d4a017;
+  --emas-terang: #e9c46a;
+  --putih: #ffffff;
+  --krem: #fbf7f0;
+  --teks-gelap: #1a1a1a;
+  --teks-terang: #fbf7f0;
+
+  --navbar-h: 5rem;
+
+  color-scheme: dark;
+}
+
+/* ===== Base ===== */
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Lenis controls scrolling; disable native smooth-scroll when it's active */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--gelap);
+    color: var(--teks-terang);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ::selection {
+    background: var(--emas);
+    color: var(--gelap);
+  }
+}
+
+/* ===== Reusable component classes ===== */
+@layer components {
+  /* Glassmorphism card */
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(233, 196, 106, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .glass-dark {
+    background: rgba(20, 8, 10, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(233, 196, 106, 0.16);
+  }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(90deg, #d4a017 0%, #e9c46a 45%, #f3dca0 60%, #d4a017 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Thin gold batik overlay – background-image set inline via BASE_URL */
+  .batik-overlay {
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat;
+    background-size: 360px;
+    opacity: 0.05;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* Pull-quote (Fraunces) */
+  .pull-quote {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .section-shell {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* ===== Utilities ===== */
+@layer utilities {
+  .text-shadow-soft {
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+  }
+  .text-shadow-strong {
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+  }
+  .drag-none {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+}
+
+/* ===== Custom scrollbar ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--gelap);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--emas), var(--merah-tua));
+  border-radius: 999px;
+}
+
+/* ===== Respect reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
