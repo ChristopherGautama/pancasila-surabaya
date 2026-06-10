@@ -7,6 +7,9 @@ import Pendahuluan from './sections/Pendahuluan'
 import Metode from './sections/Metode'
 import Peta from './sections/Peta'
 import Sila from './sections/Sila'
+import Data from './sections/Data'
+import Perbandingan from './sections/Perbandingan'
+import Temuan from './sections/Temuan'
 import { IMG } from './data/assets'
 
 export default function App() {
@@ -34,9 +37,24 @@ export default function App() {
 
         <Peta />
 
-        {/* Lima Sila — owns its own leading (white→dark) & trailing (dark→dark)
-            SectionDividers, so none is needed here. */}
+        {/* Lima Sila — owns its leading (white→dark) & trailing (krem→dark)
+            SectionDividers; the trailing one flows into the dark Data section. */}
         <Sila />
+
+        <Data />
+
+        {/* Wave: dark Data → krem Perbandingan */}
+        <SectionDivider color="#FBF7F0" className="bg-gelap" />
+
+        <Perbandingan />
+
+        {/* Wave between two krem sections — subtle gold accent line */}
+        <SectionDivider color="#FBF7F0" className="bg-krem" />
+
+        <Temuan />
+
+        {/* Wave: krem Temuan → dark "bersambung" teaser */}
+        <SectionDivider color="#14080A" className="bg-krem" />
 
         {/* Phase 1 teaser — replaced by the full narrative in later phases.
             Gives the scroll thread + progress bar real scroll distance. */}
