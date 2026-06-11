@@ -190,17 +190,23 @@ export default function Solusi() {
           </motion.div>
         </div>
 
-        {/* (c) Optimistic close */}
-        <motion.p
+        {/* (c) Optimistic close — quote sits in a dark glass panel so it stays
+            high-contrast over the busy background photo (projector-safe) */}
+        <motion.div
           initial={reduced ? false : { opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="pull-quote mx-auto mt-16 max-w-3xl text-center text-xl leading-relaxed text-teks-gelap sm:text-2xl"
+          className="mx-auto mt-16 max-w-3xl rounded-2xl border border-emas/40 bg-gelap/[0.82] px-6 py-6 backdrop-blur-sm sm:px-10 sm:py-8"
         >
-          Pelanggaran bukan satu-satunya wajah kota — Pancasila bisa hidup bila{' '}
-          <span className="text-merah-tua">ditegakkan secara kontekstual</span>.
-        </motion.p>
+          <p className="pull-quote text-center text-xl leading-relaxed text-krem text-shadow-soft sm:text-2xl">
+            Pelanggaran bukan satu-satunya wajah kota — Pancasila bisa hidup bila{' '}
+            <span className="font-semibold text-emas-terang">
+              ditegakkan secara kontekstual
+            </span>
+            .
+          </p>
+        </motion.div>
       </div>
     </section>
   )
