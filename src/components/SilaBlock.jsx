@@ -1,8 +1,24 @@
-import { useRef } from 'react'
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { AlertTriangle, Network, Sparkles, Check } from 'lucide-react'
+import { useRef, useState } from 'react'
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'framer-motion'
+import {
+  AlertTriangle,
+  Network,
+  Sparkles,
+  Check,
+  Newspaper,
+  ChevronDown,
+  ExternalLink,
+} from 'lucide-react'
 import { IMG, asset } from '../data/assets'
+import { kasusKunci, sumberUntukSila } from '../data/silaKasus'
 import GoldParticles from './GoldParticles'
+import KasusCard from './KasusCard'
 
 const ORDINAL = ['Pertama', 'Kedua', 'Ketiga', 'Keempat', 'Kelima']
 
@@ -17,16 +33,23 @@ const LAMBANG = {
 
 /**
  * One immersive sila panel, reused for all five sila.
- *  - Header: large gold symbol that draws itself (pathLength) + big number,
+ *  - Header: the official sila emblem in a round gold badge + big number,
  *    name, full reading, and the meaning (Fraunces italic).
  *  - Body (2-col on lg, alternating side per `reverse`): the official emblem
- *    illustration with a gentle scroll parallax, and three stacked lenses —
- *    Masalah, Akar Persoalan, and the climactic gold Solusi card.
+ *    illustration with a gentle scroll parallax, and the stacked lenses —
+ *    Masalah, Kasus Kunci (sourced cases derived from kasusDetail.js),
+ *    Akar Persoalan, the climactic gold Solusi card, and a collapsible
+ *    footnote-style source list.
  *  - `sila.dark` (Sila 1) switches to a dark #14080A theme with gold particles.
  */
 export default function SilaBlock({ sila, reverse = false }) {
   const reduced = useReducedMotion()
   const dark = sila.dark
+
+  // Kasus kunci & daftar sumber sila ini — diderivasi dari kasusDetail.js
+  // (single source of truth), bukan ditulis manual.
+  const { kunci, total } = kasusKunci(sila.nomor)
+  const sumber = sumberUntukSila(sila.nomor)
 
   // Gentle parallax for the illustration as the block scrolls past.
   const ref = useRef(null)
@@ -197,6 +220,7 @@ export default function SilaBlock({ sila, reverse = false }) {
               color="#CE1126"
               items={sila.masalah}
             />
+            <KasusKunciPanel dark={dark} reduced={reduced} items={kunci} total={total} />
             <LensPanel
               dark={dark}
               reduced={reduced}
@@ -206,10 +230,176 @@ export default function SilaBlock({ sila, reverse = false }) {
               items={sila.akar}
             />
             <SolusiCard dark={dark} reduced={reduced} items={sila.solusi} />
+            <SumberList dark={dark} reduced={reduced} sumber={sumber} />
           </div>
         </div>
       </div>
     </article>
+  )
+}
+
+/**
+ * Kasus Kunci — accordion of concrete, sourced cases (max 6) for this sila,
+ * derived from kasusDetail.js across all five regions. Sits between Masalah
+ * and Akar Persoalan so every claim is anchored to a real, dated event.
+ */
+function KasusKunciPanel({ dark, reduced, items, total }) {
+  const [openIdx, setOpenIdx] = useState(null)
+
+  const panel = dark
+    ? 'bg-white/[0.04] ring-1 ring-white/10'
+    : 'bg-white/70 ring-1 ring-black/5'
+  const heading = dark ? 'text-putih' : 'text-teks-gelap'
+  const sub = dark ? 'text-krem/50' : 'text-teks-gelap/50'
+  const accent = dark ? '#E9C46A' : '#7A0C18'
+
+  const cardList = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduced ? 0 : 0.05 } },
+  }
+  const card = reduced
+    ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: 8 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+      }
+
+  return (
+    <motion.div
+      initial={reduced ? false : { opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className={`rounded-2xl p-5 sm:p-6 ${panel}`}
+    >
+      <div className="mb-3 flex items-center gap-2.5">
+        <span
+          className="flex h-9 w-9 items-center justify-center rounded-lg"
+          style={{ backgroundColor: `${accent}1A`, color: accent }}
+        >
+          <Newspaper size={18} strokeWidth={2.3} />
+        </span>
+        <h4 className={`text-sm font-bold uppercase tracking-[0.16em] ${heading}`}>
+          Kasus Kunci
+        </h4>
+        <span className={`ml-auto text-xs font-semibold ${sub}`}>
+          {items.length}
+          {total > items.length ? ` dari ${total}` : ''}
+        </span>
+      </div>
+
+      <motion.div
+        variants={cardList}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        className="space-y-2.5"
+      >
+        {items.map((k, i) => (
+          <motion.div key={k.judul} variants={card}>
+            <KasusCard
+              kasus={k}
+              dark={dark}
+              wilayah={k.wilayah}
+              showSila={false}
+              reduced={reduced}
+              open={openIdx === i}
+              onToggle={() => setOpenIdx((c) => (c === i ? null : i))}
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {total > items.length && (
+        <p className={`mt-3 text-[11px] leading-snug ${sub}`}>
+          +{total - items.length} kasus terkait lainnya dapat dijelajahi pada Peta Lima
+          Kawasan.
+        </p>
+      )}
+    </motion.div>
+  )
+}
+
+/**
+ * "Lihat Sumber (n)" — collapsible, footnote-style numbered list of all unique
+ * sources behind this sila's cases. Closed by default to keep the layout clean.
+ */
+function SumberList({ dark, reduced, sumber }) {
+  const [open, setOpen] = useState(false)
+  if (!sumber.length) return null
+
+  const btn = dark
+    ? 'text-krem/60 hover:text-emas-terang'
+    : 'text-teks-gelap/55 hover:text-merah-tua'
+  const num = dark ? 'text-krem/40' : 'text-teks-gelap/40'
+  const link = dark
+    ? 'text-emas-terang hover:text-[#F3DCA0]'
+    : 'text-emas hover:text-[#8A5A00]'
+  const plain = dark ? 'text-krem/55' : 'text-teks-gelap/60'
+
+  return (
+    <motion.div
+      initial={reduced ? false : { opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className={`inline-flex items-center gap-1.5 rounded-full text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-emas ${btn}`}
+      >
+        <motion.span
+          aria-hidden="true"
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: reduced ? 0 : 0.25 }}
+          className="text-emas"
+        >
+          <ChevronDown size={14} strokeWidth={2.4} />
+        </motion.span>
+        Lihat Sumber ({sumber.length})
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="list"
+            initial={reduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            animate={reduced ? { opacity: 1 } : { height: 'auto', opacity: 1 }}
+            exit={reduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.32, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <ol className="mt-3 space-y-1.5 pl-1">
+              {sumber.map((s, i) => (
+                <li
+                  key={s.url || s.nama}
+                  className="flex items-start gap-2 text-[11px] leading-relaxed"
+                >
+                  <span className={`shrink-0 font-semibold tabular-nums ${num}`}>
+                    {i + 1}.
+                  </span>
+                  {s.url ? (
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-start gap-1 font-medium transition-colors hover:underline ${link}`}
+                    >
+                      <span>{s.nama}</span>
+                      <ExternalLink size={10} className="mt-[3px] shrink-0" />
+                    </a>
+                  ) : (
+                    <span className={plain}>{s.nama}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   )
 }
 

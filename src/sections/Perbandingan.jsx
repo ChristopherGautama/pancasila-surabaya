@@ -27,8 +27,8 @@ const WARNA = {
 
 const byId = (id) => WILAYAH.find((w) => w.id === id)
 const shortNama = (w) => w.nama.replace('Surabaya ', '')
-// Reuse wilayah.js as the single source — parse the leading number off
-// jumlahKasus ("±35 kasus" → 35) for the comparison bar chart.
+// Reuse wilayah.js as the single source (itself derived from kasusDetail.js) —
+// parse the leading number off jumlahKasus ("±8 kasus" → 8) for the bar chart.
 const jumlahNum = (w) => Number(String(w.jumlahKasus).replace(/[^\d]/g, '')) || 0
 
 function LightTooltip({ active, payload, label, suffix = '' }) {

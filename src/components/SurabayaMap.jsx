@@ -6,31 +6,23 @@ import {
   HeartHandshake,
   X,
   MousePointerClick,
-  Pill,
-  Waves,
-  Baby,
-  Flame,
-  Car,
-  Lock,
-  HeartCrack,
-  Users,
-  Swords,
-  Sprout,
-  Banknote,
-  Scale,
-  GraduationCap,
-  AlertTriangle,
+  Sparkles,
+  ScrollText,
 } from 'lucide-react'
 import { WILAYAH, SILA_NAMES } from '../data/wilayah'
+import { KASUS_DETAIL } from '../data/kasusDetail'
+import KasusCard from './KasusCard'
 
 /**
  * Stylised SVG map of Surabaya split into five clickable regions, arranged by
  * real compass bearing: Utara (north, coastal) on top, Pusat in the middle,
  * Timur on the right, Selatan at the bottom, Barat on the left.
  *
- * Geometry lives here (presentation); the textual data lives in data/wilayah.js.
- * Each region carries its SVG `path`, the centre point for its label, a short
- * label, and a red→maroon gradient pair.
+ * Geometry lives here (presentation); the regional profile lives in
+ * data/wilayah.js and the detailed case list in data/kasusDetail.js. Selecting
+ * a region opens an info panel (desktop: slide-in right; mobile: below the
+ * map) with the region profile plus an expandable accordion of documented
+ * cases — each with year, location, related sila, summary, and source links.
  */
 const GEO = {
   utara: {
@@ -75,26 +67,6 @@ const ORDER = ['utara', 'barat', 'pusat', 'timur', 'selatan']
 
 const byId = (id) => WILAYAH.find((w) => w.id === id)
 
-// Pick a small lucide icon that fits each "kasus" by keyword.
-function iconForKasus(text) {
-  const t = text.toLowerCase()
-  if (/narkoba|sabu/.test(t)) return Pill
-  if (/banjir|rob/.test(t)) return Waves
-  if (/gizi|balita/.test(t)) return Baby
-  if (/terror|\bbom|ngebom|pengebom|pembakaran|bakar/.test(t)) return Flame
-  if (/pelecehan|pencabulan|perundungan/.test(t)) return HeartCrack
-  if (/penyekapan|sekap/.test(t)) return Lock
-  if (/curanmor|properti|pencurian|pembobolan|kabel|begal/.test(t)) return Car
-  if (/tawuran|bentrok|suporter|gangster/.test(t)) return Users
-  if (/pembunuhan|carok|penganiayaan|kekerasan/.test(t)) return Swords
-  if (/agraria|lahan|waduk|sempadan|alih fungsi|padel/.test(t)) return Sprout
-  if (/penipuan|pinjol|umkm/.test(t)) return Banknote
-  if (/intoleransi|rumah ibadah|pengajian|diskriminasi|stereotip|etnis|papua/.test(t))
-    return Scale
-  if (/guru|siswa|sekolah|pelajar|didik/.test(t)) return GraduationCap
-  return AlertTriangle
-}
-
 // Track the lg breakpoint so the panel can slide from the right on desktop
 // and from below on smaller screens.
 function useIsDesktop() {
@@ -119,9 +91,9 @@ export default function SurabayaMap() {
   const anySelected = selectedId != null
 
   return (
-    <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch">
+    <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
       {/* ===== Map ===== */}
-      <div className="lg:w-[55%]">
+      <div className="lg:sticky lg:top-[calc(var(--navbar-h)+1.5rem)] lg:w-[55%]">
         <motion.svg
           viewBox="0 0 480 460"
           className="h-auto w-full"
@@ -166,7 +138,7 @@ export default function SurabayaMap() {
                     role="button"
                     tabIndex={0}
                     aria-pressed={isSel}
-                    aria-label={`${w.nama}, ${w.jumlahKasus}. Klik untuk detail.`}
+                    aria-label={`${w.nama}, ${w.jumlahKasus} terdata. Klik untuk detail.`}
                     onClick={select}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
@@ -295,7 +267,20 @@ export default function SurabayaMap() {
   )
 }
 
+/**
+ * Info panel for one region: profile header (from wilayah.js) + accordion of
+ * detailed cases and good practices (from kasusDetail.js). The body scrolls
+ * inside a capped height (60vh on mobile, viewport minus navbar on desktop)
+ * with a thin gold scrollbar and a bottom fade as a "more content" cue.
+ */
 function InfoPanel({ region, color, reduced, isDesktop, onClose }) {
+  const detail = KASUS_DETAIL[region.id] ?? { kasus: [], praktikBaik: [] }
+  const praktik = detail.praktikBaik ?? []
+
+  // Accordion: at most one card open at a time, across both lists.
+  const [openKey, setOpenKey] = useState(null)
+  const toggle = (key) => setOpenKey((c) => (c === key ? null : key))
+
   const container = {
     hidden: {},
     show: {
@@ -307,6 +292,19 @@ function InfoPanel({ region, color, reduced, isDesktop, onClose }) {
     : {
         hidden: { opacity: 0, y: 12 },
         show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+      }
+
+  // Cards get a lighter, cheaper stagger (opacity + tiny y only) so a long
+  // panel stays smooth.
+  const cardList = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduced ? 0 : 0.045 } },
+  }
+  const card = reduced
+    ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: 8 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
       }
 
   return (
@@ -323,112 +321,132 @@ function InfoPanel({ region, color, reduced, isDesktop, onClose }) {
           : { opacity: 0, x: isDesktop ? 40 : 0, y: isDesktop ? 0 : 20 }
       }
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="glass-light relative h-full overflow-hidden rounded-2xl"
+      className="glass-light relative flex h-full flex-col overflow-hidden rounded-2xl"
     >
       {/* Color accent bar */}
-      <div className="h-1.5 w-full" style={{ backgroundColor: color }} />
+      <div className="h-1.5 w-full shrink-0" style={{ backgroundColor: color }} />
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="p-6"
+      {/* Close — outside the scroll area so it stays reachable */}
+      <button
+        onClick={onClose}
+        aria-label="Tutup panel"
+        className="absolute right-3 top-4 z-20 rounded-full p-1.5 text-teks-gelap/40 transition-colors hover:bg-merah/10 hover:text-merah"
       >
-        {/* Close */}
-        <button
-          onClick={onClose}
-          aria-label="Tutup panel"
-          className="absolute right-3 top-4 rounded-full p-1.5 text-teks-gelap/40 transition-colors hover:bg-merah/10 hover:text-merah"
-        >
-          <X size={18} />
-        </button>
+        <X size={18} />
+      </button>
 
-        {/* Header */}
-        <motion.div variants={item} className="pr-8">
-          <h3 className="font-display text-2xl font-extrabold leading-tight text-teks-gelap">
-            {region.nama}
-          </h3>
-          <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-merah-tua/10 px-3 py-1 text-xs font-bold text-merah-tua">
-            <Layers size={13} />
-            {region.jumlahKasus} terhimpun
-          </span>
-        </motion.div>
+      {/* Scrollable body */}
+      <div className="scrollbar-emas relative max-h-[60vh] grow overflow-y-auto lg:max-h-[calc(100vh-var(--navbar-h)-3rem)]">
+        <motion.div variants={container} initial="hidden" animate="show" className="p-6">
+          {/* Header */}
+          <motion.div variants={item} className="pr-8">
+            <h3 className="font-display text-2xl font-extrabold leading-tight text-teks-gelap">
+              {region.nama}
+            </h3>
+            <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-merah-tua/10 px-3 py-1 text-xs font-bold text-merah-tua">
+              <Layers size={13} />
+              ±{detail.kasus.length} kasus terdata
+            </span>
+          </motion.div>
 
-        {/* Karakter */}
-        <motion.p
-          variants={item}
-          className="mt-4 text-sm leading-relaxed text-teks-gelap/75"
-        >
-          {region.karakter}
-        </motion.p>
-
-        {/* Sila menonjol */}
-        <motion.div variants={item} className="mt-5">
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-merah-tua">
-            Sila menonjol
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {region.silaMenonjol.map((n) => (
-              <span
-                key={n}
-                title={`Sila ${n} — ${SILA_NAMES[n]}`}
-                className="inline-flex items-center gap-1.5 rounded-full bg-emas-shine bg-[length:200%_auto] px-3 py-1 text-xs font-bold text-gelap shadow-sm"
-              >
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-gelap/85 text-[10px] font-bold text-emas-terang">
-                  {n}
-                </span>
-                Sila {n}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Pemicu + Rentan */}
-        <motion.div variants={item} className="mt-5 grid grid-cols-2 gap-3">
-          <div className="rounded-xl bg-krem px-3 py-2.5">
-            <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-merah-tua/80">
-              <Zap size={13} /> Pemicu utama
-            </p>
-            <p className="mt-1 text-sm font-semibold text-teks-gelap">
-              {region.pemicu}
-            </p>
-          </div>
-          <div className="rounded-xl bg-krem px-3 py-2.5">
-            <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-merah-tua/80">
-              <HeartHandshake size={13} /> Kelompok rentan
-            </p>
-            <p className="mt-1 text-sm font-semibold text-teks-gelap">
-              {region.rentan}
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Kasus khas */}
-        <motion.div variants={item} className="mt-5">
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-merah-tua">
-            Kasus khas
-          </p>
-          <motion.ul
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: reduced ? 0 : 0.06 } },
-            }}
-            className="space-y-2"
+          {/* Karakter */}
+          <motion.p
+            variants={item}
+            className="mt-4 text-sm leading-relaxed text-teks-gelap/75"
           >
-            {region.kasus.map((k) => {
-              const Icon = iconForKasus(k)
-              return (
-                <motion.li key={k} variants={item} className="flex items-start gap-2.5">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-merah-tua/10 text-merah-tua">
-                    <Icon size={14} strokeWidth={2.2} />
+            {region.karakter}
+          </motion.p>
+
+          {/* Sila menonjol */}
+          <motion.div variants={item} className="mt-5">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-merah-tua">
+              Sila menonjol
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {region.silaMenonjol.map((n) => (
+                <span
+                  key={n}
+                  title={`Sila ${n} — ${SILA_NAMES[n]}`}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-emas-shine bg-[length:200%_auto] px-3 py-1 text-xs font-bold text-gelap shadow-sm"
+                >
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-gelap/85 text-[10px] font-bold text-emas-terang">
+                    {n}
                   </span>
-                  <span className="text-sm leading-snug text-teks-gelap/80">{k}</span>
-                </motion.li>
-              )
-            })}
-          </motion.ul>
+                  Sila {n}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Pemicu + Rentan */}
+          <motion.div variants={item} className="mt-5 grid grid-cols-2 gap-3">
+            <div className="rounded-xl bg-krem px-3 py-2.5">
+              <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-merah-tua/80">
+                <Zap size={13} /> Pemicu utama
+              </p>
+              <p className="mt-1 text-sm font-semibold text-teks-gelap">
+                {region.pemicu}
+              </p>
+            </div>
+            <div className="rounded-xl bg-krem px-3 py-2.5">
+              <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-merah-tua/80">
+                <HeartHandshake size={13} /> Kelompok rentan
+              </p>
+              <p className="mt-1 text-sm font-semibold text-teks-gelap">
+                {region.rentan}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Daftar kasus (accordion) */}
+          <motion.div variants={item} className="mt-6">
+            <p className="mb-2.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-merah-tua">
+              <ScrollText size={13} /> Daftar Kasus
+            </p>
+            <motion.div variants={cardList} className="space-y-2.5">
+              {detail.kasus.map((k, i) => (
+                <motion.div key={k.judul} variants={card}>
+                  <KasusCard
+                    kasus={k}
+                    open={openKey === `k-${i}`}
+                    onToggle={() => toggle(`k-${i}`)}
+                    reduced={reduced}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Praktik baik (hanya kawasan yang memilikinya) */}
+          {praktik.length > 0 && (
+            <motion.div variants={item} className="mt-6">
+              <p className="mb-2.5 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#8A5A00]">
+                <Sparkles size={13} className="text-emas" /> Praktik Baik
+              </p>
+              <motion.div variants={cardList} className="space-y-2.5">
+                {praktik.map((p, i) => (
+                  <motion.div key={p.judul} variants={card}>
+                    <KasusCard
+                      kasus={p}
+                      gold
+                      open={openKey === `p-${i}`}
+                      onToggle={() => toggle(`p-${i}`)}
+                      reduced={reduced}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          )}
         </motion.div>
-      </motion.div>
+
+        {/* Bottom fade — cue that the panel scrolls */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none sticky bottom-0 -mt-10 h-10 w-full bg-gradient-to-t from-white/95 via-white/55 to-transparent"
+        />
+      </div>
     </motion.div>
   )
 }
+

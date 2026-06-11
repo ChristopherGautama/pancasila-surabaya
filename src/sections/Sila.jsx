@@ -74,6 +74,15 @@ export default function Sila() {
               dapat dijalankan.
             </motion.p>
 
+            <motion.p
+              variants={fadeItem}
+              className="mt-4 text-xs leading-relaxed text-krem/55"
+            >
+              Setiap analisis dirujuk dari pemberitaan media kredibel, jurnal ilmiah, dan
+              data BPS Kota Surabaya &mdash; daftar sumber tersedia pada tiap sila dan
+              naskah jurnal.
+            </motion.p>
+
             {/* Lens legend */}
             <motion.div
               variants={fadeItem}
