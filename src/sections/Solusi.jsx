@@ -1,8 +1,16 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Check, Handshake, Flower2, MessagesSquare, Droplets } from 'lucide-react'
-import { IMG } from '../data/assets'
+import { IMG, asset } from '../data/assets'
 import { SILAS } from '../data/silas'
-import { SILA_SYMBOLS } from '../components/sila-symbols'
+
+// Nama lambang tiap sila untuk teks alt yang deskriptif.
+const LAMBANG = {
+  1: 'Bintang',
+  2: 'Rantai Emas',
+  3: 'Pohon Beringin',
+  4: 'Kepala Banteng',
+  5: 'Padi dan Kapas',
+}
 
 // Proven good-practice highlights.
 const PRAKTIK = [
@@ -96,7 +104,6 @@ export default function Solusi() {
           className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
         >
           {SILAS.map((s) => {
-            const Sym = SILA_SYMBOLS[s.nomor]
             return (
               <motion.article
                 key={s.id}
@@ -105,17 +112,22 @@ export default function Solusi() {
                 transition={{ type: 'spring', stiffness: 300, damping: 22 }}
                 className="relative overflow-hidden rounded-2xl border border-emas/40 bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-shadow duration-300 hover:shadow-emas-glow"
               >
-                <Sym
-                  className="pointer-events-none absolute -right-3 -top-3 h-16 w-16 opacity-20"
-                  strokeWidth={3}
-                />
+                {/* Lambang asli sila — badge bundar kecil di pojok kartu */}
+                <span className="pointer-events-none absolute right-4 top-4 block h-11 w-11 overflow-hidden rounded-full ring-2 ring-emas/70 shadow-sm">
+                  <img
+                    src={asset(s.logo)}
+                    alt={`Lambang Sila ke-${s.nomor}: ${LAMBANG[s.nomor]}`}
+                    loading="lazy"
+                    className="drag-none h-full w-full object-cover"
+                  />
+                </span>
                 <span
                   className="text-xs font-bold uppercase tracking-[0.2em]"
                   style={{ color: s.accent === '#E9C46A' ? '#B8860B' : s.accent }}
                 >
                   Sila {s.nomor}
                 </span>
-                <h3 className="mt-1 font-display text-base font-extrabold leading-tight text-teks-gelap">
+                <h3 className="mt-1 pr-12 font-display text-base font-extrabold leading-tight text-teks-gelap">
                   {s.nama}
                 </h3>
                 <ul className="mt-3 space-y-2">

@@ -1,11 +1,19 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { AlertTriangle, Network, Sparkles, Check } from 'lucide-react'
-import { IMG } from '../data/assets'
+import { IMG, asset } from '../data/assets'
 import GoldParticles from './GoldParticles'
-import { SILA_SYMBOLS } from './sila-symbols'
 
 const ORDINAL = ['Pertama', 'Kedua', 'Ketiga', 'Keempat', 'Kelima']
+
+// Nama lambang tiap sila untuk teks alt yang deskriptif.
+const LAMBANG = {
+  1: 'Bintang',
+  2: 'Rantai Emas',
+  3: 'Pohon Beringin',
+  4: 'Kepala Banteng',
+  5: 'Padi dan Kapas',
+}
 
 /**
  * One immersive sila panel, reused for all five sila.
@@ -18,7 +26,6 @@ const ORDINAL = ['Pertama', 'Kedua', 'Ketiga', 'Keempat', 'Kelima']
  */
 export default function SilaBlock({ sila, reverse = false }) {
   const reduced = useReducedMotion()
-  const Symbol = SILA_SYMBOLS[sila.nomor]
   const dark = sila.dark
 
   // Gentle parallax for the illustration as the block scrolls past.
@@ -74,21 +81,22 @@ export default function SilaBlock({ sila, reverse = false }) {
           viewport={{ once: true, amount: 0.4 }}
           className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:gap-9 sm:text-left"
         >
-          {/* Drawing gold symbol */}
+          {/* Lambang asli sila — badge bundar emas */}
           <div className="shrink-0">
-            <div
-              className="relative flex h-40 w-40 items-center justify-center rounded-full ring-2 ring-emas/40 sm:h-44 sm:w-44"
-              style={{
-                background: dark
-                  ? 'radial-gradient(circle at 50% 40%, rgba(212,160,23,0.20), rgba(20,8,10,0) 70%)'
-                  : 'radial-gradient(circle at 50% 40%, rgba(212,160,23,0.16), rgba(251,247,240,0) 70%)',
-              }}
+            <motion.div
+              initial={reduced ? false : { opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: reduced ? 0 : 0.1 }}
+              className="relative h-40 w-40 overflow-hidden rounded-full ring-4 ring-emas shadow-[0_10px_34px_rgba(122,12,24,0.28)] sm:h-44 sm:w-44"
             >
-              <Symbol
-                className="h-24 w-24 drop-shadow-[0_2px_12px_rgba(212,160,23,0.45)] sm:h-28 sm:w-28"
-                strokeWidth={3.2}
+              <img
+                src={asset(sila.logo)}
+                alt={`Lambang Sila ke-${sila.nomor}: ${LAMBANG[sila.nomor]}`}
+                loading="lazy"
+                className="drag-none h-full w-full object-cover"
               />
-            </div>
+            </motion.div>
           </div>
 
           {/* Identity */}

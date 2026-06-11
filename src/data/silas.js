@@ -1,5 +1,7 @@
 // Data lima sila — sumber tunggal untuk section "Lima Sila: Masalah & Solusi".
 // `gambar` memakai IMG (assets.js) agar path patuh import.meta.env.BASE_URL.
+// `logo` = path relatif lambang asli sila (di-resolve via asset()/BASE_URL di
+// komponen), ditampilkan sebagai badge bundar emas.
 // `dark: true` hanya untuk Sila 1 (blok bertema gelap). `accent` = warna aksen
 // dari keluarga merah-emas proyek.
 import { IMG } from './assets'
@@ -12,6 +14,7 @@ export const SILAS = [
     namaPanjang: 'Ketuhanan Yang Maha Esa',
     makna: 'Menjamin kebebasan beragama, toleransi, dan penghormatan antarumat.',
     gambar: IMG.sila1,
+    logo: 'img/logo-sila-1.png',
     accent: '#E9C46A',
     dark: true,
     masalah: [
@@ -39,6 +42,7 @@ export const SILAS = [
     namaPanjang: 'Kemanusiaan yang Adil dan Beradab',
     makna: 'Mengakui hak hidup, perlakuan beradab, dan perlindungan pihak rentan.',
     gambar: IMG.sila2,
+    logo: 'img/logo-sila-2.png',
     accent: '#CE1126',
     dark: false,
     masalah: [
@@ -67,6 +71,7 @@ export const SILAS = [
     namaPanjang: 'Persatuan Indonesia',
     makna: 'Mengutamakan persatuan, kerukunan, dan penghargaan atas perbedaan.',
     gambar: IMG.sila3,
+    logo: 'img/logo-sila-3.png',
     accent: '#D4A017',
     dark: false,
     masalah: [
@@ -94,6 +99,7 @@ export const SILAS = [
       'Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan',
     makna: 'Mengutamakan musyawarah, partisipasi, dan keputusan yang bijak.',
     gambar: IMG.sila4,
+    logo: 'img/logo-sila-4.png',
     accent: '#7A0C18',
     dark: false,
     masalah: [
@@ -121,6 +127,7 @@ export const SILAS = [
     namaPanjang: 'Keadilan Sosial bagi Seluruh Rakyat Indonesia',
     makna: 'Mewujudkan pemerataan, kepastian hukum, dan perlindungan warga rentan.',
     gambar: IMG.sila5,
+    logo: 'img/logo-sila-5.png',
     accent: '#B11324',
     dark: false,
     masalah: [
