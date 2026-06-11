@@ -1,6 +1,11 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useInView } from 'framer-motion'
-import CountUp from 'react-countup'
+// react-countup is CommonJS (module.exports = { default, useCountUp }, __esModule:true).
+// Depending on the bundler's CJS interop, the default import can arrive as the
+// module namespace object instead of the component — guard so CountUp is always
+// the component function.
+import CountUpImport from 'react-countup'
+const CountUp = CountUpImport?.default ?? CountUpImport
 import {
   ResponsiveContainer,
   LineChart,
