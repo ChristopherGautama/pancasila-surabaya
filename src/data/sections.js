@@ -4,6 +4,7 @@
 export const SECTIONS = [
   { id: 'hero', label: 'Beranda' },
   { id: 'pendahuluan', label: 'Pendahuluan' },
+  { id: 'landasan', label: 'Landasan' },
   { id: 'metode', label: 'Metode' },
   { id: 'peta', label: 'Lima Kawasan' },
   { id: 'sila', label: 'Lima Sila' },

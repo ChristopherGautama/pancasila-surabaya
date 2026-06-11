@@ -5,6 +5,7 @@ import SectionDivider from './components/SectionDivider'
 import BackToTop from './components/BackToTop'
 import Hero from './sections/Hero'
 import Pendahuluan from './sections/Pendahuluan'
+import Landasan from './sections/Landasan'
 import Metode from './sections/Metode'
 import Peta from './sections/Peta'
 import Sila from './sections/Sila'
@@ -29,9 +30,13 @@ export default function App() {
 
         <Pendahuluan />
 
-        {/* Wave between two krem sections — krem container + krem fill leaves
-            just the decorative gold accent line as a subtle separator */}
-        <SectionDivider color="#FBF7F0" className="bg-krem" />
+        {/* Wave: krem Pendahuluan → white Landasan (wave fill = section below) */}
+        <SectionDivider color="#FFFFFF" className="bg-krem" />
+
+        <Landasan />
+
+        {/* Wave: white Landasan → krem Metode */}
+        <SectionDivider color="#FBF7F0" className="bg-putih" />
 
         <Metode />
 
