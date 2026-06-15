@@ -28,8 +28,8 @@ export default function Sila() {
 
   return (
     <>
-      {/* Wave: white Peta → dark Sila intro */}
-      <SectionDivider color="#14080A" className="bg-putih" />
+      {/* Wave: dark Persekusi → dark Sila intro (gold accent line bridges them) */}
+      <SectionDivider color="#14080A" className="bg-gelap" />
 
       <section id="sila" className="section-shell bg-gelap">
         {/* Intro (dark) */}

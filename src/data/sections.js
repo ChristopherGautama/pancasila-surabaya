@@ -7,6 +7,7 @@ export const SECTIONS = [
   { id: 'landasan', label: 'Landasan' },
   { id: 'metode', label: 'Metode' },
   { id: 'peta', label: 'Lima Kawasan' },
+  { id: 'persekusi', label: 'Persekusi' },
   { id: 'sila', label: 'Lima Sila' },
   { id: 'data', label: 'Data' },
   { id: 'perbandingan', label: 'Perbandingan' },

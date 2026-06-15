@@ -8,6 +8,7 @@ import Pendahuluan from './sections/Pendahuluan'
 import Landasan from './sections/Landasan'
 import Metode from './sections/Metode'
 import Peta from './sections/Peta'
+import Persekusi from './sections/Persekusi'
 import Sila from './sections/Sila'
 import Data from './sections/Data'
 import Perbandingan from './sections/Perbandingan'
@@ -45,8 +46,14 @@ export default function App() {
 
         <Peta />
 
-        {/* Lima Sila — owns its leading (white→dark) & trailing (krem→dark)
-            SectionDividers; the trailing one flows into the dark Data section. */}
+        {/* Sorotan: Persekusi — owns its leading wave (white Peta → dark
+            Persekusi). Dark, dramatic backdrop to contrast the lighter
+            sections around it. Placed before Lima Sila (kasus-per-wilayah). */}
+        <Persekusi />
+
+        {/* Lima Sila — owns its leading (now dark→dark from Persekusi) &
+            trailing (krem→dark) SectionDividers; the trailing one flows into
+            the dark Data section. */}
         <Sila />
 
         <Data />

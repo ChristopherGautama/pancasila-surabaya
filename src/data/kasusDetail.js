@@ -119,12 +119,15 @@ export const KASUS_DETAIL = {
     kasus: [
       {
         judul: "Peredaran Narkoba Skala Besar di Semampir",
-        tahun: "2024–2025",
-        lokasi: "Kec. Semampir",
+        tahun: "April 2026",
+        lokasi: "Jl. Hang Tuah VI, Kel. Ujung, Kec. Semampir",
         sila: [2, 5],
         ringkasan:
-          "Peredaran sabu dengan barang bukti mencapai 42.924 gram terungkap di kawasan Semampir — salah satu kantong kemiskinan pesisir — merusak martabat manusia dan masa depan kelompok ekonomi lemah.",
-        sumber: [{ nama: "Dokumen Kelas I1 Surabaya Utara (kompilasi pemberitaan)", url: "" }],
+          "Polrestabes Surabaya menangkap pria berinisial IM (24) asal Sampang di kamar kosnya di Jl. Hang Tuah VI, Kel. Ujung, Kec. Semampir, pada 10 April 2026 dengan 76 paket sabu siap edar (total 42,924 gram). IM mengaku mengedarkan sabu sejak Februari 2026 karena desakan ekonomi — peredaran narkoba merusak martabat manusia dan masa depan kelompok ekonomi lemah di kawasan pesisir Semampir.",
+        sumber: [
+          { nama: "BeritaJatim", url: "https://beritajatim.id/polrestabes-surabaya-tangkap-pengedar-sabu-semampir/" },
+          { nama: "Detik Jatim", url: "https://www.detik.com/jatim/hukum-dan-kriminal/d-8499969/kos-di-surabaya-utara-jadi-markas-pengedar-sabu" },
+        ],
       },
       {
         judul: "Pembunuhan/Carok Kuli Bangunan di Wonokusumo",
@@ -139,21 +142,26 @@ export const KASUS_DETAIL = {
       },
       {
         judul: "Pelecehan Seksual terhadap Pengendara Perempuan",
-        tahun: "Mei 2026",
+        tahun: "12 Mei 2026",
         lokasi: "Kenjeran (dilaporkan ke SPKT Polres Pelabuhan Tanjung Perak)",
         sila: [2],
         ringkasan:
-          "Pengendara perempuan menjadi korban pelecehan seksual di ruang publik; bagian dari rentetan pelecehan seksual di Kota Surabaya yang menjadi sorotan masyarakat dan merendahkan martabat perempuan.",
-        sumber: [{ nama: "Tribun Jatim (Mei 2026)", url: "" }],
+          "Seorang ibu rumah tangga menjadi korban pelecehan seksual (begal payudara) di kawasan Kenjeran pada malam 12 Mei 2026. Pelaku tak dikenal sempat memepet dan meminta nomor kontak korban, lalu memegang bagian tubuh korban saat ia membuka pagar rumah. Kasus dilaporkan ke SPKT Polres Pelabuhan Tanjung Perak — bagian dari rentetan pelecehan di ruang publik Surabaya yang merendahkan martabat perempuan.",
+        sumber: [
+          { nama: "Suara Surabaya", url: "https://www.suarasurabaya.net/kelanakota/2026/begal-payudara-menyasar-seorang-ibu-di-kenjeran-surabaya/" },
+        ],
       },
       {
         judul: "Tingginya Kriminalitas Harta Benda (Curat, Curas, Curanmor)",
-        tahun: "2021–2022 (berulang)",
-        lokasi: "Wilayah hukum Polres Pelabuhan Tanjung Perak",
+        tahun: "2024–2026 (berulang)",
+        lokasi: "Wilayah hukum Polres Pelabuhan Tanjung Perak (a.l. Bulak Banteng Kidul, Kenjeran)",
         sila: [5],
         ringkasan:
-          "Data Polres Pelabuhan Tanjung Perak mencatat kenaikan curat, curas, dan curanmor pada 2022 dibanding 2021. Pemkot merespons dengan memasang 1.344 dari 1.944 CCTV di titik strategis; tingginya kejahatan harta benda mencerminkan kesenjangan ekonomi.",
-        sumber: [{ nama: "Detik.com (2022); Polrestabes Surabaya", url: "" }],
+          "Kriminalitas harta benda — pencurian dengan pemberatan dan pencurian kendaraan bermotor — marak di wilayah hukum Polres Pelabuhan Tanjung Perak. Sejumlah pelaku terekam CCTV dan viral di media sosial, seperti dua pelaku curanmor di Jl. Bulak Banteng Kidul (April 2025) yang ternyata residivis, serta komplotan berkedok driver ojol. Tingginya kejahatan properti mencerminkan tekanan ekonomi dan kesenjangan di kawasan padat pesisir.",
+        sumber: [
+          { nama: "Tribratanews Polda Jatim", url: "https://tribratanews.jatim.polri.go.id/15/04/2025/polres-pelabuhan-tanjung-perak-amankan-pelaku-curanmor-yang-terekam-cctv-dan-viral-di-medsos/" },
+          { nama: "Surya/Tribunnews", url: "https://surabaya.tribunnews.com/2025/03/04/dua-maling-motor-di-surabaya-utara-terekam-cctv-berkedok-driver-ojol-antar-penumpangmya" },
+        ],
       },
       {
         judul: "Begal Disertai Kekerasan & Percobaan Curanmor Dihajar Massa",
@@ -184,16 +192,20 @@ export const KASUS_DETAIL = {
         sila: [3, 5],
         ringkasan:
           "Penelitian Jurnal AVATARA UNESA (2016) mencatat kawasan ini menjadi titik rawan kejahatan terorganisir sejak penghujung Orde Baru (1995–1998); saat polisi beroperasi di satu titik, kelompok kriminal berpindah — pola yang berlanjut hingga era modern.",
-        sumber: [{ nama: "AVATARA – e-Journal UNESA, Vol. 4 No. 2, 2016", url: "" }],
+        sumber: [
+          { nama: "AVATARA – e-Journal Pendidikan Sejarah UNESA, Vol. 4 No. 2 (2016)", url: "https://ejournal.unesa.ac.id/index.php/avatara/article/view/14939" },
+        ],
       },
       {
         judul: "Balita Gizi Buruk di Sidotopo & Banjir Rob Pesisir",
-        tahun: "Berulang (data terkini 2024–2025)",
+        tahun: "Terdokumentasi (studi Puskesmas Sidotopo); banjir rob berulang",
         lokasi: "Sidotopo (Kec. Semampir) & kawasan pesisir utara",
         sila: [5],
         ringkasan:
-          "Kemiskinan kantong pesisir memunculkan kasus balita bergizi buruk di Sidotopo, sementara banjir rob berulang menggerus permukiman — ketimpangan akses terhadap kesehatan dan lingkungan yang aman.",
-        sumber: [{ nama: "Dokumen Kelas I1 Surabaya Utara (kompilasi pemberitaan)", url: "" }],
+          "Studi di wilayah Puskesmas Sidotopo (Kec. Semampir) mendokumentasikan kasus balita gizi buruk yang dipicu kemiskinan, pola asuh keliru, dan keterbatasan akses layanan kesehatan; banjir rob berulang di kawasan pesisir utara turut menggerus permukiman warga — cermin ketimpangan akses terhadap kesehatan dan lingkungan yang aman.",
+        sumber: [
+          { nama: "Jurnal Pamator – Universitas Trunojoyo (Studi Puskesmas Sidotopo)", url: "https://journal.trunojoyo.ac.id/pamator/article/view/3375" },
+        ],
       },
     ],
     praktikBaik: [],
@@ -239,39 +251,49 @@ export const KASUS_DETAIL = {
       {
         judul: "Pencurian Modus Aplikasi Kencan",
         tahun: "25 Agustus 2025",
-        lokasi: "Kec. Tenggilis Mejoyo",
+        lokasi: "Kec. Tenggilis Mejoyo (hotel kawasan Jemursari)",
         sila: [2],
         ringkasan:
-          "OF ditangkap Polsek Tenggilis Mejoyo karena menipu dua mahasiswi yang dikenal lewat aplikasi kencan: mengajak bertemu di hotel, lalu memanfaatkan kelengahan korban untuk mencuri sepeda motor, STNK, dan ponsel.",
-        sumber: [{ nama: "Dokumen Kelas I1 Surabaya Timur (kompilasi pemberitaan Polsek Tenggilis Mejoyo)", url: "" }],
+          "OF (30) ditangkap Polsek Tenggilis Mejoyo karena menipu dua mahasiswi (CLS dan AN, masing-masing 21) yang dikenalnya lewat aplikasi kencan dan Telegram. Setelah membangun kedekatan, ia mengajak korban bertemu di hotel kawasan Jemursari (25 Agustus 2025), lalu membawa kabur sepeda motor beserta STNK dan ponsel korban; pelaku diringkus di Rungkut pada Oktober 2025.",
+        sumber: [
+          { nama: "Suara Surabaya", url: "https://www.suarasurabaya.net/kelanakota/2025/pria-di-surabaya-gasak-motor-dan-hp-mahasiswi-dengan-modus-ajak-kencan/" },
+          { nama: "Tribun Jatim", url: "https://jatim.tribunnews.com/surabaya/523974/modus-duda-satu-anak-perdayai-gadis-di-surabaya-diajak-kencan-lalu-gasak-motor-dan-harta-korban" },
+        ],
       },
       {
         judul: "Pencurian Kabel Telkom — Atensi Wali Kota",
-        tahun: "11 Januari 2026",
-        lokasi: "Surabaya Timur",
+        tahun: "November–Desember 2025",
+        lokasi: "Sejumlah titik kota (a.l. Pacar Kembang/Tambaksari, Jl. Bubutan, Sidoyoso)",
         sila: [5],
         ringkasan:
-          "Fenomena pencurian kabel Telkom yang mengkhawatirkan mendapat atensi Wali Kota Surabaya; penegakan hukum dinilai belum tegas, sementara kerugian infrastruktur publik ditanggung masyarakat.",
-        sumber: [{ nama: "Dokumen Kelas I1 Surabaya Timur (kompilasi pemberitaan)", url: "" }],
+          "Pencurian kabel Telkom dan kabel Penerangan Jalan Umum (PJU) marak di sejumlah titik Surabaya dan mendapat atensi Wali Kota Eri Cahyadi, yang menegaskan perusakan fasilitas umum dari uang negara wajib ditindak tegas. Polrestabes Surabaya menangkap delapan pelaku di tiga lokasi — Jl. Bubutan, Pacar Kembang (Tambaksari), dan Sidoyoso — pada Desember 2025; kerugian infrastruktur publik ditanggung masyarakat.",
+        sumber: [
+          { nama: "KilasJatim", url: "https://kilasjatim.com/polrestabes-surabaya-tangkap-delapan-pelaku-pencurian-kabel-telkom-dan-pju-di-sejumlah-titik-kota/" },
+          { nama: "TIMES Surabaya (atensi Wali Kota Eri)", url: "https://surabaya.times.co.id/news/berita/gToBFmVXz/Wali-Kota-Eri-Minta-Pelaku-Pencurian-Lampu-Kota-Lama-Diadili" },
+        ],
       },
       {
         judul: "Nelayan & Petani Tambak Tolak Proyek Lapangan Padel Keputih",
-        tahun: "25 Mei 2026",
-        lokasi: "Kel. Keputih, Kec. Sukolilo",
+        tahun: "Januari–Mei 2026",
+        lokasi: "Jl. Keputih Tegal Timur, Kel. Keputih, Kec. Sukolilo",
         sila: [4],
         ringkasan:
-          "Warga menolak proyek lapangan padel karena diduga menutup sempadan sungai dan mengganggu akses; warga khawatir banjir, kerusakan lingkungan, dan terancamnya mata pencaharian — proyek berjalan tanpa pelibatan warga yang memadai.",
-        sumber: [{ nama: "Dokumen Kelas I1 Surabaya Timur (kompilasi pemberitaan)", url: "" }],
+          "Kelompok pembudidaya ikan dan petani tambak Kel. Keputih, Kec. Sukolilo, memprotes proyek lapangan padel yang diduga menyerobot sempadan sungai di Jl. Keputih Tegal Timur (sempadan ditutup cor beton). Warga khawatir banjir, kerusakan ekosistem, dan terancamnya mata pencaharian; mereka melapor ke Ombudsman Jatim dan Pemkot. Konflik berlangsung sejak Januari 2026 — proyek berjalan tanpa pelibatan warga yang memadai.",
+        sumber: [
+          { nama: "Kompas.com", url: "https://surabaya.kompas.com/read/2026/05/25/200629678/petani-tambak-di-surabaya-protes-lapangan-padel-serobot-sempadan-sungai" },
+          { nama: "CNN Indonesia", url: "https://www.cnnindonesia.com/nasional/20260526060541-20-1362357/nelayan-tambak-di-surabaya-lawan-proyek-padel-diduga-caplok-sungai" },
+        ],
       },
       {
-        judul: "Diskriminasi Masyarakat Papua & Hambatan Izin Rumah Ibadah",
-        tahun: "Terdokumentasi riset (rentang 2018–2025)",
-        lokasi: "Tambaksari & kawasan Purimas (Gunung Anyar)",
+        judul: "Pengepungan & Ujaran Rasial Asrama Mahasiswa Papua (Jl. Kalasan)",
+        tahun: "16–17 Agustus 2019",
+        lokasi: "Asrama Mahasiswa Papua, Jl. Kalasan, Kec. Tambaksari",
         sila: [1, 3],
         ringkasan:
-          "Kajian akademik mendokumentasikan diskriminasi terhadap masyarakat Papua di Surabaya Timur; selain itu tercatat gesekan pada pengajian kawasan Purimas dan kesulitan pengurusan izin pendirian rumah ibadah — jumlahnya sedikit namun dampaknya dinilai paling berat.",
+          "Asrama Mahasiswa Papua di Jl. Kalasan, Tambaksari, dikepung ormas dan aparat pada 16–17 Agustus 2019 disertai ujaran rasial, dipicu hoaks perusakan bendera. Insiden ini memantik gelombang protes nasional; sejumlah pelaku dijerat hukum atas ujaran kebencian bermuatan SARA. Diskriminasi rasial mencederai nilai kemanusiaan dan persatuan — jumlahnya sedikit namun dampaknya dinilai paling berat.",
         sumber: [
-          { nama: "Google Scholar (studi diskriminasi Papua)", url: "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=kasus+pancasila+di+surabaya+timur&btnG=#d=gs_qabs&t=1779941877342&u=%23p%3DSoUIaAxvbFQJ" },
+          { nama: "Kompas.com (Kaleidoskop 2019)", url: "https://regional.kompas.com/read/2019/12/26/06360081/kaleidoskop-2019--pengepungan-asrama-mahasiwa-papua-di-surabaya?page=all" },
+          { nama: "BenarNews", url: "https://www.benarnews.org/indonesian/berita/rasisme-papua-3-terdakwa-11272019151132.html" },
         ],
       },
     ],
@@ -410,13 +432,16 @@ export const KASUS_DETAIL = {
         ],
       },
       {
-        judul: "Guru Agama Cabuli Anak Didik",
-        tahun: "2025",
-        lokasi: "Surabaya Pusat",
+        judul: "Oknum Guru Ngaji Cabuli Santri (Jl. Genteng Kali)",
+        tahun: "2025–April 2026 (terungkap Mei 2026)",
+        lokasi: "Yayasan keagamaan, Jl. Genteng Kali, Kec. Genteng",
         sila: [2],
         ringkasan:
-          "Seorang guru agama dilaporkan mencabuli anak didiknya sendiri; korban diduga mencapai ±20 siswa, dengan tujuh siswa telah melapor — pengkhianatan kepercayaan oleh figur pendidik terhadap anak.",
-        sumber: [{ nama: "Dokumen Kelas I1 Surabaya Pusat (kompilasi pemberitaan)", url: "" }],
+          "Oknum guru ngaji berinisial MZ (22) mencabuli tujuh santri laki-laki di sebuah yayasan pendidikan keagamaan di Jl. Genteng Kali, Kec. Genteng. Perbuatan berlangsung sejak 2025 hingga terungkap pada April–Mei 2026; Polrestabes Surabaya menetapkannya sebagai tersangka dan DPRD Jatim mengecam keras kasus ini — pengkhianatan kepercayaan oleh figur pendidik terhadap anak.",
+        sumber: [
+          { nama: "BeritaJatim", url: "https://beritajatim.com/oknum-guru-ngaji-di-surabaya-cabuli-7-murid-laki-laki-belasan-tahun" },
+          { nama: "Tribun Jatim (DPRD Jatim mengecam)", url: "https://jatim.tribunnews.com/jatim/544656/dprd-jatim-kecam-keras-dugaan-pelecehan-seksual-oleh-oknum-guru-ngaji-di-surabaya" },
+        ],
       },
       {
         judul: "Tawuran di Sekitar PGS Menewaskan Remaja — Provokasi Medsos",
@@ -431,12 +456,15 @@ export const KASUS_DETAIL = {
       },
       {
         judul: "Carok Antartetangga di Bubutan",
-        tahun: "2025",
+        tahun: "18 April 2022",
         lokasi: "Jl. Carikan III, Kel. Alun-Alun Contong, Kec. Bubutan",
         sila: [2],
         ringkasan:
-          "Pertikaian senjata tajam (carok) bermula dari cekcok antartetangga sekitar pukul 14.30 WIB; korban bersimbah darah sampai menghentikan mobil di jalan raya untuk minta tolong. Pelaku S; dua korban H dan anaknya SD.",
-        sumber: [{ nama: "Detik (Polrestabes Surabaya)", url: "" }],
+          "Pertikaian senjata tajam (carok) di Jl. Carikan III, Kel. Alun-Alun Contong, sekitar pukul 14.30 WIB pada 18 April 2022, dilatarbelakangi dendam lama antartetangga. Pelaku S terlibat cekcok lalu dikeroyok dua korban (H dan anaknya SD), kemudian mengambil pisau dan menyerang; korban bersimbah darah sempat menghentikan mobil di jalan raya untuk minta tolong. Pelaku kemudian menyerahkan diri.",
+        sumber: [
+          { nama: "Detik Jatim", url: "https://www.detik.com/jatim/hukum-dan-kriminal/d-6038619/carok-di-surabaya-korban-bersimbah-darah-hentikan-mobil-minta-tolong" },
+          { nama: "Detik Jatim (motif dendam lama)", url: "https://www.detik.com/jatim/hukum-dan-kriminal/d-6038900/carok-di-surabaya-diduga-dilatarbelakangi-dendam-lama" },
+        ],
       },
       {
         judul: "Penertiban PKL Pasar Keputran — Pendekatan Humanis",
