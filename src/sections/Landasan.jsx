@@ -5,6 +5,7 @@ import {
   ChevronDown,
   Coins,
   Compass,
+  ExternalLink,
   Gavel,
   HeartHandshake,
   Layers,
@@ -61,10 +62,41 @@ function KonsepBody({ konsep, reduced, onGoToAnti }) {
       <p className="pull-quote text-lg leading-snug text-teks-gelap sm:text-xl lg:text-2xl">
         {konsep.ringkas}
       </p>
+      {konsep.ahli && (
+        <p className="mt-3 text-xs font-semibold text-merah-tua">
+          <span className="uppercase tracking-[0.14em] text-teks-gelap/50">
+            Dikemukakan oleh:{' '}
+          </span>
+          {konsep.ahli}
+        </p>
+      )}
       <p className="mt-4 text-sm leading-relaxed text-teks-gelap/75 sm:text-base">
         {konsep.isi}
       </p>
       <RelevansiCallout text={konsep.relevansi} />
+
+      {konsep.sumber?.length > 0 && (
+        <div className="mt-6">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-merah-tua">
+            Sumber
+          </p>
+          <ul className="mt-2 space-y-1.5">
+            {konsep.sumber.map((s) => (
+              <li key={s.url}>
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-start gap-1.5 text-xs font-semibold text-emas transition-colors hover:text-[#8A5A00] hover:underline"
+                >
+                  <ExternalLink size={12} className="mt-0.5 shrink-0" />
+                  <span>{s.nama}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Konsep ke-5 menjembatani ke Bagian B */}
       {konsep.id === 'aplikasi' && (
@@ -366,7 +398,7 @@ export default function Landasan() {
           })}
         </motion.div>
 
-        {/* ===== Bagian B — Gerakan 5 ANTI ===== */}
+        {/* ===== Bagian B — Lima Sikap Anti ===== */}
         <div id="lima-anti" className="mt-24 scroll-mt-24 sm:mt-28">
           <motion.div
             variants={fadeContainer}
@@ -388,15 +420,23 @@ export default function Landasan() {
               className="font-display text-2xl font-extrabold leading-tight text-teks-gelap sm:text-3xl lg:text-4xl"
             >
               Pancasila dalam Tindakan:{' '}
-              <span className="text-merah-tua">Gerakan 5 ANTI</span>
+              <span className="text-merah-tua">Lima Sikap Anti</span>
             </motion.h3>
             <motion.p
               variants={fadeItem}
               className="mt-4 text-base leading-relaxed text-teks-gelap/75 sm:text-lg"
             >
-              Lima ANTI mengubah nilai Pancasila menjadi sikap aktif&mdash;dan
-              masing-masing memetakan langsung ke kasus nyata yang kami temukan
-              di Surabaya.
+              Lima Sikap Anti mengubah nilai Pancasila menjadi sikap
+              aktif&mdash;dan masing-masing memetakan langsung ke kasus nyata
+              yang kami temukan di Surabaya.
+            </motion.p>
+            <motion.p
+              variants={fadeItem}
+              className="mt-3 text-xs leading-relaxed text-teks-gelap/55 sm:text-sm"
+            >
+              Kerangka &ldquo;Lima Sikap Anti&rdquo; ini adalah sintesis
+              analitis kelompok kami atas temuan di Surabaya, bukan satu program
+              resmi nasional bernama tunggal.
             </motion.p>
           </motion.div>
 

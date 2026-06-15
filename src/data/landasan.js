@@ -1,9 +1,9 @@
 // ============================================================
 // landasan.js — Data "Landasan Pancasila" untuk section baru
-// (filosofi, ideologi, sistem filsafat, tokoh teladan, 5 ANTI).
+// (filosofi, ideologi, sistem filsafat, tokoh teladan, Lima Sikap Anti).
 // Dikaitkan ke temuan proyek Surabaya agar menyatu dengan website.
-// Catatan: "5 ANTI" mengikuti rumusan umum mata kuliah Pancasila;
-// sesuaikan teks bila dosen memakai rumusan berbeda.
+// Catatan: kerangka "Lima Sikap Anti" adalah sintesis analitis kelompok
+// atas temuan di Surabaya, bukan satu program resmi nasional bernama tunggal.
 // ============================================================
 
 // 1) LIMA KONSEP PANCASILA (kartu/tab)
@@ -15,9 +15,14 @@ export const KONSEP_PANCASILA = [
     ikon: "BookOpen", // lucide
     ringkas:
       "Pancasila adalah hasil perenungan mendalam (philosophische grondslag) atas nilai-nilai yang sudah hidup dalam budaya bangsa Indonesia — bukan diciptakan, melainkan digali.",
-    isi: "Sebagai filosofi, Pancasila menjadi cara pandang bangsa terhadap Tuhan, manusia, persatuan, demokrasi, dan keadilan. Ia merangkum kebijaksanaan lokal (gotong royong, musyawarah, toleransi) menjadi satu pandangan hidup yang utuh dan menjadi sumber dari segala sumber nilai.",
+    ahli: "Ir. Soekarno — Pidato BPUPKI, 1 Juni 1945",
+    isi: "Istilah philosophische grondslag (Weltanschauung) diperkenalkan Ir. Soekarno dalam pidato sidang BPUPKI 1 Juni 1945 sebagai 'fundamen, filsafat, pikiran yang sedalam-dalamnya' yang di atasnya didirikan Indonesia merdeka. Pancasila digali dari nilai luhur bangsa sendiri, bukan ideologi asing — inilah dasar falsafah negara.",
     relevansi:
       "Dalam proyek ini: setiap kasus pelanggaran di Surabaya pada hakikatnya adalah jarak antara nilai filosofis yang dicita-citakan dengan praktik nyata di lapangan.",
+    sumber: [
+      { nama: "Kompas — Isi Pidato Soekarno 1 Juni 1945", url: "https://www.kompas.com/stori/read/2023/06/28/190000079/isi-pidato-soekarno-1-juni-1945-cikal-bakal-lahirnya-pancasila-" },
+      { nama: "Yudi Latif — Reaktualisasi Pancasila (Pusdik MK)", url: "https://pusdik.mkri.id/materi/materi_197_Reaktualisasi%20Pancasila%20(Yudi%20Latif).pdf" },
+    ],
   },
   {
     id: "ideologi",
@@ -26,9 +31,14 @@ export const KONSEP_PANCASILA = [
     ikon: "Compass",
     ringkas:
       "Pancasila adalah ideologi terbuka: nilai dasarnya tetap, namun penerapannya dapat berkembang sesuai tuntutan zaman tanpa kehilangan jati diri.",
-    isi: "Berbeda dari ideologi tertutup yang kaku, Pancasila memberi ruang tafsir kontekstual. Nilai dasar (ketuhanan, kemanusiaan, persatuan, kerakyatan, keadilan) bersifat tetap; nilai instrumental dan praksisnya menyesuaikan kebutuhan masyarakat yang terus berubah.",
+    ahli: "Konsep ideologi terbuka — Dr. Alfian; pembinaan resmi oleh BPIP",
+    isi: "Menurut Dr. Alfian, kekuatan Pancasila sebagai ideologi terbuka terletak pada tiga dimensi: realita (berakar pada budaya bangsa), idealisme (memberi cita-cita dan harapan), dan fleksibilitas (terbuka pada pemikiran baru tanpa mengubah nilai dasar). Karena itu Pancasila tetap relevan lintas zaman sebagai ideologi negara.",
     relevansi:
       "Dalam proyek ini: justru karena terbuka, penguatan Pancasila tidak bisa seragam — tiap kawasan Surabaya membutuhkan penerapan yang kontekstual.",
+    sumber: [
+      { nama: "Kompas — Dimensi Pancasila sebagai Ideologi Terbuka", url: "https://nasional.kompas.com/read/2022/11/26/01000011/dimensi-pancasila-sebagai-ideologi-terbuka" },
+      { nama: "Tirto — 3 Dimensi Pancasila sebagai Ideologi Terbuka", url: "https://tirto.id/makna-pancasila-sebagai-ideologi-terbuka-yang-memiliki-3-dimensi-gh84" },
+    ],
   },
   {
     id: "filsafat",
@@ -37,25 +47,34 @@ export const KONSEP_PANCASILA = [
     ikon: "Layers",
     ringkas:
       "Kelima sila bukan daftar yang terpisah, melainkan satu kesatuan yang hierarkis-piramidal dan saling mengisi (majemuk tunggal).",
-    isi: "Sila ke-1 menjiwai sila-sila berikutnya; sila ke-5 menjadi muara dari semuanya. Karena itu, melanggar satu sila kerap menyeret pelanggaran sila lain — tindak kekerasan (Sila 2) sekaligus merusak persatuan (Sila 3) dan keadilan (Sila 5).",
+    ahli: "Prof. Notonagoro (buku 'Pancasila Dasar Filsafat Negara RI', 1962); dielaborasi Kaelan (2013)",
+    isi: "Notonagoro menempatkan Pancasila sebagai sistem filsafat: kelima sila adalah satu kesatuan organis yang tak terpisahkan, tersusun hierarkis-piramidal — Ketuhanan sebagai basis yang menjiwai sila-sila di bawahnya hingga Keadilan Sosial. Pancasila memenuhi kajian ontologis, epistemologis, dan aksiologis layaknya sistem filsafat.",
     relevansi:
       "Dalam proyek ini: temuan kami membuktikannya — Sila ke-2 dan ke-5 hampir selalu muncul beriringan, persis seperti sifat sistemik filsafat Pancasila.",
+    sumber: [
+      { nama: "RRI — Konsep Hierarkis Piramidal (Notonagoro 1962)", url: "https://www.rri.co.id/hukum/53028/membaca-pancasila-dengan-konsep-hierarkis-piramida-dan-thawaf" },
+      { nama: "FIP UPGRIS — Pancasila sebagai Sistem Filsafat", url: "https://fip.upgris.ac.id/index.php/2020/08/05/pancasila-sebagai-sistem-filsafat/" },
+    ],
   },
   {
     id: "tokoh",
     label: "Tokoh Teladan",
-    judul: "Tokoh-Tokoh Teladan Pancasila",
+    judul: "Tokoh Teladan — Ir. Soekarno",
     ikon: "Users",
     ringkas:
-      "Nilai Pancasila hidup melalui keteladanan tokoh — perumus bangsa hingga warga biasa yang menggerakkan perubahan di komunitasnya.",
-    isi: "Para perumus (Soekarno, Mohammad Hatta, dan tokoh BPUPKI) meletakkan dasar nilai. Namun keteladanan juga tampak pada tingkat akar rumput: penggerak Kampung Pancasila, pendamping transformasi eks-lokalisasi, dan aparat yang memilih mediasi di atas kekerasan.",
+      "Mempersatukan kemajemukan menjadi satu fondasi bersama.",
+    isi: "Sebagai penggali dan perumus Pancasila, Soekarno meramu nilai asli bangsa menjadi dasar yang mempersatukan beragam suku, agama, dan golongan. Yang dapat diteladani: mendahulukan persatuan di atas kepentingan golongan, merangkul kemajemukan (Bhinneka Tunggal Ika), dan menjadikan gotong royong — kerja bersama untuk kepentingan bersama — sebagai inti laku Pancasila. Pelajaran ini relevan untuk meredam perpecahan, intoleransi, dan main hakim sendiri.",
     relevansi:
-      "Dalam proyek ini: praktik baik di Surabaya (Kampung Pancasila Sambikerep–Pakal, Moroseneng→Kampung Anggrek Sememi, mediasi Wali Kota) adalah wujud nyata keteladanan Pancasila masa kini.",
+      "Keteladanan ini hidup di akar rumput Surabaya — penggerak Kampung Pancasila Sambikerep–Pakal dan upaya mediasi yang memilih musyawarah di atas kekerasan.",
+    sumber: [
+      { nama: "Kompas — Isi Pidato Soekarno 1 Juni 1945", url: "https://www.kompas.com/stori/read/2023/06/28/190000079/isi-pidato-soekarno-1-juni-1945-cikal-bakal-lahirnya-pancasila-" },
+      { nama: "BPIP RI", url: "https://bpip.go.id/" },
+    ],
   },
   {
     id: "aplikasi",
-    label: "Aplikasi 5 ANTI",
-    judul: "Aplikasi Pancasila: Gerakan 5 ANTI",
+    label: "Lima Sikap Anti",
+    judul: "Aplikasi Pancasila: Lima Sikap Anti",
     ikon: "ShieldCheck",
     ringkas:
       "Pancasila diterapkan bukan hanya sebagai gagasan, tetapi sebagai sikap aktif menolak lima hal yang merusak nilai kemanusiaan dan keadilan.",

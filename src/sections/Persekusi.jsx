@@ -89,8 +89,8 @@ export default function Persekusi() {
 
   return (
     <>
-      {/* Wave: white Peta → dark Persekusi (latar gelap dramatis) */}
-      <SectionDivider color="#14080A" className="bg-putih" />
+      {/* Wave: dark Peta → dark Persekusi (gold accent line bridges them) */}
+      <SectionDivider color="#14080A" className="bg-gelap" />
 
       <section id="persekusi" className="section-shell bg-gelap py-24 sm:py-28">
         <div

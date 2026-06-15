@@ -7,7 +7,7 @@ import Hero from './sections/Hero'
 import Pendahuluan from './sections/Pendahuluan'
 import Landasan from './sections/Landasan'
 import Metode from './sections/Metode'
-import Peta from './sections/Peta'
+import PetaLimaKawasanFoto from './components/PetaLimaKawasanFoto'
 import Persekusi from './sections/Persekusi'
 import Sila from './sections/Sila'
 import Data from './sections/Data'
@@ -41,10 +41,10 @@ export default function App() {
 
         <Metode />
 
-        {/* Wave: krem Metode → white Peta (wave fill = section below) */}
-        <SectionDivider color="#FFFFFF" className="bg-krem" />
+        {/* Wave: krem Metode → dark Peta (wave fill = section below) */}
+        <SectionDivider color="#14080A" className="bg-krem" />
 
-        <Peta />
+        <PetaLimaKawasanFoto />
 
         {/* Sorotan: Persekusi — owns its leading wave (white Peta → dark
             Persekusi). Dark, dramatic backdrop to contrast the lighter
